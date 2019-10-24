@@ -1,0 +1,11 @@
+trigger ContactTrigger on Contact (after insert, after update, after delete, after undelete) {
+    
+    IF (Trigger.isInsert || Trigger.isUpdate || Trigger.isundelete ) {
+        contactTriggerHelper.updateAccount(trigger.new);
+        
+    }
+    
+    If (Trigger.isDelete){
+        contactTriggerHelper.updateAccount(trigger.old);
+    }
+}
